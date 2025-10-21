@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bnc1ff7eb8sy5"]
+[gd_scene load_steps=10 format=4 uid="uid://bnc1ff7eb8sy5"]
 
 [ext_resource type="Script" uid="uid://c0nlhuwu5opq0" path="res://scripts/car.gd" id="1_c35m8"]
 [ext_resource type="Script" uid="uid://bof2rh2uglsef" path="res://scenes/multiplayer_synchronizer.gd" id="2_qt2eu"]
@@ -36,6 +36,16 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("Name:billboard")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt2eu"]
+albedo_color = Color(0.99999994, 0.174173, 0.12721539, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_50v30"]
+material = SubResource("StandardMaterial3D_qt2eu")
+size = Vector3(1, 1, 0.1)
 
 [node name="VehicleBody3D" type="VehicleBody3D"]
 gravity_scale = 3.0
@@ -91,13 +101,21 @@ use_as_traction = true
 transform = Transform3D(-4.3711385e-08, -0.10316157, 0, 0.99999994, -4.5093356e-09, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_3wmsh")
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.012379527, 1.363923, 1.6607851)
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_x31a8")
 visibility_update_mode = 1
 script = ExtResource("2_qt2eu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.9986739, 3.7252903e-09, 0.0514818, 0.045529336, 0.46677262, 0.88320464, -0.02403029, 0.88437736, -0.46615365, -1.1920929e-07, 22.888023, -9.710762)
+transform = Transform3D(-0.9986739, 5.3725726e-09, 0.0514818, 0.024729071, 0.8770792, 0.47970888, -0.045153607, 0.48034588, -0.8759161, 0.15811908, 5.391016, -5.082613)
+
+[node name="Aim" type="Node3D" parent="."]
+transform = Transform3D(0.99997574, -0.006981262, 3.051606e-10, 0, -4.37114e-08, -1.0000001, 0.006981261, 0.99997586, -4.3710326e-08, 0, 1.3086878, 1.9813457)
+
+[node name="Marker3D" type="Marker3D" parent="Aim"]
+transform = Transform3D(-0.9755342, -0.21984601, 0, -9.609774e-09, 4.264195e-08, -1, 0.21984603, -0.97553414, -4.371139e-08, -0.11211789, 1.8402351, 0.033803463)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Aim"]
+transform = Transform3D(1.0000001, -3.7252903e-09, -2.7755576e-17, -3.7252903e-09, 1.0000001, -7.45057e-09, 4.656613e-10, -7.450581e-09, 1.0000001, 0.037718058, 5.402626, -2.3841858e-07)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_50v30")

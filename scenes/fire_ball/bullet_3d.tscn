@@ -17,7 +17,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("SphereShape3D_ys4u8")
 
 [node name="Projectile3D" parent="." instance=ExtResource("1_ri8cd")]
-transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 0.646, 0, 1.083, 0, -1, 0, -2.8237558e-08, 0, 0, 0)
 
 [node name="MultiplayerSpawner" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_8exth")
