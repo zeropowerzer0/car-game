@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://t86hvqcgi1if"]
+
+[ext_resource type="Script" uid="uid://dmxvleae4laix" path="res://scripts/tank.gd" id="1_6lwfj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt2eu"]
+albedo_color = Color(0.99999994, 0.174173, 0.12721539, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_qrxud"]
+material = SubResource("StandardMaterial3D_qt2eu")
+size = Vector3(0.5, 0.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_how3p"]
+size = Vector3(2.2416382, 1.9558392, 2.149109)
+
+[sub_resource type="TorusMesh" id="TorusMesh_1ealj"]
+inner_radius = 0.156
+outer_radius = 0.498
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qrxud"]
+properties/0/path = NodePath(".:health")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("CSGBox3D/CSGBox3D2:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="VehicleBody3D" type="VehicleBody3D"]
+gravity_scale = 2.0
+engine_force = 87.77
+script = ExtResource("1_6lwfj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48120117, 0.60555303, 0)
+size = Vector3(1.9624023, 0.9199219, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.61979276, 0.78476554, 0, -0.78476554, 0.61979276, 0, 0, 0, 1, -0.8360319, 0.3324536, 0)
+operation = 2
+size = Vector3(0.42773438, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2606827, 0.6641034, -0.014556885)
+size = Vector3(1.0244598, 0.20263672, 0.7305298)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20882857, -0.01959467, -0.00024414063)
+operation = 2
+size = Vector3(0.66186523, 0.24612427, 0.25341797)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D/CSGBox3D2"]
+transform = Transform3D(0.99888086, -0.047299642, 5.7723373e-06, 0.04729961, 0.9988807, 0.00031897373, -2.0852312e-05, -0.00031834331, 1.0000002, 0, 0, 0)
+radius = 0.18
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D/CSGBox3D2/CSGSphere3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.52490234, 0, 0)
+radius = 0.15
+height = 0.9501953
+sides = 30
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D/CSGBox3D2/CSGSphere3D/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059814453, 0)
+operation = 2
+radius = 0.12
+height = 0.95
+sides = 30
+
+[node name="AimMarker" type="MeshInstance3D" parent="CSGBox3D/CSGBox3D2/CSGSphere3D/CSGCylinder3D"]
+transform = Transform3D(-6.337356e-05, 0.33890793, -0.79308844, -0.0002074632, 0.68087435, 0.39476275, 1.4841594, 0.00010950119, 2.1313725e-05, 0.9059341, 10.788544, 6.342959e-05)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_qrxud")
+skeleton = NodePath("../../..")
+
+[node name="Marker3D" type="Marker3D" parent="CSGBox3D/CSGBox3D2/CSGSphere3D"]
+transform = Transform3D(0.76884884, -2.514571e-08, 1.7881393e-07, 2.7939677e-08, 1.0109012, 1.8626451e-09, 0, 1.8626451e-09, 1.141095, -2.5023007, 0.118425846, 0.20214307)
+
+[node name="CSGCombiner3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5138855, 0.46351337, 0.022918701)
+shape = SubResource("BoxShape3D_how3p")
+
+[node name="frontWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -0.8271165)
+engine_force = 87.77
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="frontWheel"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_1ealj")
+
+[node name="frontWheel2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0.8648517)
+engine_force = 87.77
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="frontWheel2"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_1ealj")
+
+[node name="backWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0866332, 0, -0.8271165)
+engine_force = 87.77
+use_as_traction = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="backWheel"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_1ealj")
+
+[node name="backWheel2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0866332, 0, 0.8502035)
+engine_force = 87.77
+use_as_traction = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="backWheel2"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.013937235, 0, 0)
+mesh = SubResource("TorusMesh_1ealj")
+
+[node name="cameraOrigin" type="Node3D" parent="."]
+transform = Transform3D(0.99884224, -0.047295, -0.008808028, 0.04729961, 0.9988807, 0.00031897373, 0.008783083, -0.0007352205, 0.99996144, 0.7418839, 1.2696564, -0.014556885)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="cameraOrigin"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="cameraOrigin"]
+transform = Transform3D(-4.371138e-08, -0.12360149, 0.9923319, 0, 0.99233204, 0.123601474, -0.9999998, 5.4027924e-09, -4.3376208e-08, 3.5474522, 1.0962237, -0.015795348)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5138855, 0.46351337, 0.022918701)
+shape = SubResource("BoxShape3D_how3p")
+
+[node name="Name" type="Label3D" parent="."]
+transform = Transform3D(-0.0037175491, 0, 0.999993, 0, 1, 0, -0.999993, 0, -0.0037175491, 0, 3.4089985, 0)
+billboard = 1
+text = "Car"
+font_size = 48
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qrxud")

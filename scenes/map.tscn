@@ -65,6 +65,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 100,
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -100, 0, 0)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Arena"]
-_spawnable_scenes = PackedStringArray("uid://bnc1ff7eb8sy5")
+_spawnable_scenes = PackedStringArray("uid://t86hvqcgi1if")
 spawn_path = NodePath("..")
 spawn_limit = 5
