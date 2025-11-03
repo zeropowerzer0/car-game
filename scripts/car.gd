@@ -31,7 +31,9 @@ func _input(event: InputEvent) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _physics_process(delta: float) -> void:
+	
 	steering = move_toward(steering,Input.get_axis("right","left")*ster_angle,delta*3.5)
+	
 	if Input.is_action_just_pressed("aim"):
 		if is_capturing:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -51,14 +53,13 @@ func _physics_process(delta: float) -> void:
 		#if $VehicleWheel3D4.get_friction_slip() > 0.5 :
 			#for i in range(5):
 				#$VFX_puff_run.restart(true)
-
-	
 	else:
 		engine_force/=1.2
 		
 	if Input.is_action_just_pressed("shoot"):
 		print("shoot pressed")
 		shoot_bullet()
+		
 	if is_capturing and Input.is_action_just_pressed("left_click"):
 		print("shoot pressed mouse")
 		shoot_bullet()
@@ -96,6 +97,7 @@ func _spawn_bullet(transforms: Transform3D):
 	var bullet:Node3D = BULLET_3D.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_transform = transforms
+	
 func shake():
 	print("shake that car")
 	apply_impulse(Vector3(0,250,0))

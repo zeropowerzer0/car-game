@@ -1,5 +1,7 @@
 extends VehicleBody3D
 
+class_name tank
+
 @onready var camera_origin: Node3D = $cameraOrigin
 
 @export var health: int = 5
@@ -36,13 +38,15 @@ func _ready() -> void:
 	set_physics_process(is_multiplayer_authority())
 	aim_marker.visible=is_multiplayer_authority()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent)-> void:
 		if is_capturing and event is InputEventMouseMotion:
 			aim.rotate_y(-event.relative.x * aim_sensitivity/1000)
 			aim.rotate_z(event.relative.y * aim_sensitivity/2000)
 			aim.rotation_degrees=Vector3(0,clamp(aim.rotation_degrees.y,-max_aim_angleY,max_aim_angleY),clamp(aim.rotation_degrees.z,-max_aim_angleX,max_aim_angleX))
 			camera_origin.rotation_degrees=aim.rotation_degrees
+			
 func _physics_process(delta: float) -> void:
+	
 	steering = move_toward(steering,Input.get_axis("right","left")*ster_angle,delta*3.5)
 	if Input.is_action_just_pressed("aim"):
 		if is_capturing:
