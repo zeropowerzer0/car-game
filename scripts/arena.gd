@@ -5,6 +5,7 @@ func _ready() -> void:
 		return
 	#Host added the player
 	multiplayer.peer_connected.connect(add_car)
+	await get_tree().create_timer(3).timeout
 	add_car(1)
 	multiplayer.peer_disconnected.connect(delete_car)
 

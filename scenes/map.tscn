@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvsirk5mcvna2"]
+[gd_scene load_steps=12 format=3 uid="uid://dvsirk5mcvna2"]
 
+[ext_resource type="PackedScene" uid="uid://b4dnlbuovfuhh" path="res://scenes/tank_selection.tscn" id="1_2klcf"]
 [ext_resource type="Texture2D" uid="uid://ygwuftleelam" path="res://assets/textures/PavingStones138_1K-JPG_Color.jpg" id="1_e0an3"]
 [ext_resource type="Script" uid="uid://c51xkhas2tu16" path="res://scripts/arena.gd" id="1_p5pve"]
 [ext_resource type="Texture2D" uid="uid://c8ghgk0vd1nsw" path="res://assets/textures/PavingStones138_1K-JPG_NormalGL.jpg" id="2_p5pve"]
@@ -33,6 +34,8 @@ size = Vector2(200, 200)
 points = PackedVector3Array(-100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100)
 
 [node name="map" type="Node3D"]
+
+[node name="TankSelection" parent="." instance=ExtResource("1_2klcf")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e0an3")
