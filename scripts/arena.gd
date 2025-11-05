@@ -5,6 +5,8 @@ func _ready() -> void:
 		return
 	#Host added the player
 	multiplayer.peer_connected.connect(add_car)
+	await get_tree().create_timer(5).timeout
+	$"../TankSelection".hide()
 	add_car(1)
 	multiplayer.peer_disconnected.connect(delete_car)
 
@@ -14,6 +16,9 @@ func add_car(id):
 	
 	if Global.tank_type == "rusher":
 		car.set_script(load("res://scripts/tank_types/rusher.gd"))
+		
+	if Global.tank_type == "defender":
+		car.set_script(load("res://scripts/tank_types/defender.gd"))
 		
 	
 	car.name=str(id)

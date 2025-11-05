@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://cr43jo25kmhe0"]
+
+[ext_resource type="Script" uid="uid://b2fqj3dtm2vhy" path="res://scripts/newSceneScripts/lobby.gd" id="1_pp3d2"]
+[ext_resource type="ArrayMesh" uid="uid://0d411xt6m5gw" path="res://meshStore/chamberHead.res" id="1_t5uba"]
+[ext_resource type="ArrayMesh" uid="uid://lsjptgl0sddp" path="res://meshStore/chamberFloor.res" id="2_u47hl"]
+[ext_resource type="Texture2D" uid="uid://ygwuftleelam" path="res://assets/textures/PavingStones138_1K-JPG_Color.jpg" id="4_4uxg2"]
+[ext_resource type="Texture2D" uid="uid://b0y5lohypw65d" path="res://assets/textures/Screenshot 2025-11-04 170730.png" id="5_4uxg2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1mqtk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_smliv"]
+sky_material = SubResource("ProceduralSkyMaterial_1mqtk")
+
+[sub_resource type="Environment" id="Environment_sefr7"]
+background_mode = 2
+sky = SubResource("Sky_smliv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7ubg"]
+albedo_texture = ExtResource("4_4uxg2")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pp3d2"]
+top_radius = 2.255
+bottom_radius = 1.5
+height = 1.0
+
+[sub_resource type="Animation" id="Animation_2po8h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
+[sub_resource type="Animation" id="Animation_71cmj"]
+resource_name = "entryAni"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [75.0, 85.0]
+}
+
+[sub_resource type="Animation" id="Animation_pp3d2"]
+resource_name = "rotatingAni"
+length = 4.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_clwpx"]
+_data = {
+&"RESET": SubResource("Animation_2po8h"),
+&"entryAni": SubResource("Animation_71cmj"),
+&"rotatingAni": SubResource("Animation_pp3d2")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_pp3d2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sefr7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ChamberHead" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.60722166, 0, -7.957037)
+mesh = ExtResource("1_t5uba")
+
+[node name="ChamberFloor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.7082509, 0.15820313, -8.066006)
+mesh = ExtResource("2_u47hl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12854958, 0)
+material_override = SubResource("StandardMaterial3D_o7ubg")
+mesh = SubResource("CylinderMesh_pp3d2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, -5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_clwpx")
+}
+autoplay = "entryAni"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(24.932934, 0, 0, 0, 46.82679, 0, 0, 0, 10, 4.362826, 3.6902347, 13.569862)
+texture = ExtResource("5_4uxg2")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0898532e-06, 0, 10, 0, 22.19676, 0, -24.932934, 0, -4.371139e-07, 11.614613, 3.6902347, -3.7444305)
+texture = ExtResource("5_4uxg2")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0898532e-06, 0, 10, 0, 22.19676, 0, -24.932934, 0, -4.371139e-07, -13.918232, 3.6902347, -3.7444305)
+texture = ExtResource("5_4uxg2")

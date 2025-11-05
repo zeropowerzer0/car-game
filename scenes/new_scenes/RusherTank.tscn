@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dupbpy0hb5igs"]
+
+[ext_resource type="PackedScene" uid="uid://t86hvqcgi1if" path="res://scenes/tank.tscn" id="1_npeb3"]
+[ext_resource type="Texture2D" uid="uid://2a23ttbggq2h" path="res://assets/textures/Screenshot 2025-11-05 185630.png" id="2_jo3na"]
+
+[sub_resource type="GDScript" id="GDScript_jo3na"]
+resource_name = "RusherTank"
+script/source = "extends VehicleBody3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="VehicleBody3D" instance=ExtResource("1_npeb3")]
+script = SubResource("GDScript_jo3na")
+
+[node name="Sprite3D" type="Sprite3D" parent="CSGBox3D/CSGBox3D2" index="2"]
+transform = Transform3D(-8.017995e-09, 0, 0.99999994, 0, 0.18540671, 0, -0.18343034, 0, -4.3711385e-08, 0.522038, -0.020599008, -0.005458057)
+texture = ExtResource("2_jo3na")
+
+[node name="Name" parent="." index="8"]
+transform = Transform3D(-0.0037175491, 0, 0.999993, 0, 1, 0, -0.999993, 0, -0.0037175491, 1.1705985, 1.9295247, 0)
+visible = false
