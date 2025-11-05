@@ -6,6 +6,6 @@ func _on_rusher_pressed() -> void:
 	tank_selection.hide()
 
 
-func _on_default_pressed() -> void:
-	Global.tank_type = "default"
-	tank_selection.hide()
+func _on_defender_pressed() -> void:
+	Global.tank_type = "defender"
+	get_tree().change_scene_to_file("res://scenes/map.tscn")

@@ -25,4 +25,4 @@ func move_to_tank_selection():
 	Global.player_name=name_input.text.strip_edges()
 	multiplayer.multiplayer_peer=peer
 	get_tree().change_scene_to_file("res://scenes/map.tscn")
-	
+	#get_tree().change_scene_to_file("res://scenes/tank_selection.tscn")
