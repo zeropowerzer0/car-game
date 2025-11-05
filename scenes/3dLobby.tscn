@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://dst07yc07im3h"]
+
+[ext_resource type="Script" uid="uid://b2kik1yfof5b5" path="res://scenes/rotate.gd" id="1_0osyi"]
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="1_ixgqq"]
+[ext_resource type="Script" uid="uid://rxuscviwulvk" path="res://scenes/lobby.gd" id="1_opckk"]
+[ext_resource type="PackedScene" uid="uid://t86hvqcgi1if" path="res://scenes/tank.tscn" id="2_opckk"]
+[ext_resource type="PackedScene" uid="uid://b2xttrlskfm8d" path="res://assets/map_assets/GLB format/block-moving-blue.glb" id="3_yvtok"]
+
+[sub_resource type="Sky" id="Sky_s4qr7"]
+sky_material = ExtResource("1_ixgqq")
+
+[sub_resource type="Environment" id="Environment_yvtok"]
+background_mode = 2
+sky = SubResource("Sky_s4qr7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ixgqq"]
+points = PackedVector3Array(-0.49273244, 4.1159587e-06, -0.4156585, 0.47714046, 0.5, 0.4025106, 0.4621947, 0.5, 0.4323089, 0.4773, 5.551115e-17, 0.4464374, 0.44643158, 0, -0.47730598, -0.40251127, 0.5, -0.47714648, -0.4324028, 0.5, 0.4622006, -0.41565898, 4.182048e-06, 0.4927322, 0.4621947, 0.5, -0.4323089, -0.47714666, 0.5, 0.4025106, 0.40250507, 0.5, 0.47714648, -0.41565898, 4.182048e-06, -0.4927322, 0.49273068, 1.8194298e-06, -0.41566226, -0.49273244, 4.1159587e-06, 0.4156585, -0.47714666, 0.5, -0.4025106, 0.40250507, 0.5, -0.47714648, 0.4156545, 3.116165e-06, 0.49273428, 0.49273068, 1.8194298e-06, 0.41566226, 0.4156545, 3.116165e-06, -0.49273428, -0.40251127, 0.5, 0.47714648, 0.47714046, 0.5, -0.4025106, -0.4773062, -5.551115e-17, -0.44653383, 0.44717753, 0.10753053, 0.47810352, -0.4773062, 0, 0.44653383, -0.4324028, 0.5, -0.4622006, 0.44717753, 0.1229242, -0.47810352, -0.44653425, 0, 0.47730598, -0.44653425, 0, -0.47730598, -0.4622009, 0.5, 0.4324023, -0.4622009, 0.5, -0.4324023, 0.4773, 5.551115e-17, -0.4464374, 0.4323966, 0.5, 0.4621072)
+
+[node name="3dLobby" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yvtok")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 5.0
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.825199, 5.0483136)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_0osyi")
+
+[node name="VehicleBody3D" parent="StaticBody3D" instance=ExtResource("2_opckk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5959258, 2.1895893, 0.037207603)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="block-moving-blue2" parent="StaticBody3D" instance=ExtResource("3_yvtok")]
+transform = Transform3D(2.705, 0, 0, 0, 2.705, 0, 0, 0, 2.705, 0, -0.68108195, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(2.705, 0, 0, 0, 2.705, 0, 0, 0, 2.705, 0, -0.68108195, 0)
+shape = SubResource("ConvexPolygonShape3D_ixgqq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 233.0
+offset_bottom = 426.0
+script = ExtResource("1_opckk")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 27.0
+offset_right = 284.0
+offset_bottom = 227.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="NameInput" type="LineEdit" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter you name here"
+
+[node name="IpInput" type="LineEdit" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter the Ip of the game"
+
+[node name="Host" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Host "
+
+[node name="Join" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Join"
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Host" to="Control" method="_on_host_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Join" to="Control" method="_on_join_pressed"]
+
+[editable path="StaticBody3D/block-moving-blue2"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CarGame"
-run/main_scene="uid://uf6600xtijb8"
+run/main_scene="uid://dst07yc07im3h"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

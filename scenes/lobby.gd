@@ -1,8 +1,8 @@
 extends Control
 const PORT:int = 9999
 var peer:ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-@onready var ip_input: LineEdit = $UI/IpInput
-@onready var name_input: LineEdit = $UI/NameInput
+@onready var name_input: LineEdit =$Panel/VBoxContainer/NameInput
+@onready var ip_input: LineEdit = $Panel/VBoxContainer/IpInput
 
 func _on_host_pressed() -> void:
 	Global.player_name = name_input.text.strip_edges()
