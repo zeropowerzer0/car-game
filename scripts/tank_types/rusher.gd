@@ -7,6 +7,7 @@ func _ready():
 	speed = 8
 	
 func _unhandled_input(event: InputEvent) -> void:
+	super._unhandled_input(event)
 	if Input.is_action_just_pressed("dash"):
 		speed = 10
 		rate_of_fire = 7

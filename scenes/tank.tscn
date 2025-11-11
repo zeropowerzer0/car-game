@@ -13,7 +13,7 @@ material = SubResource("StandardMaterial3D_qt2eu")
 size = Vector3(0.5, 0.5, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_how3p"]
-size = Vector3(2.2416382, 1.9558392, 2.149109)
+size = Vector3(2.047, 1.651, 2.144)
 
 [sub_resource type="TorusMesh" id="TorusMesh_1ealj"]
 inner_radius = 0.156
@@ -34,7 +34,9 @@ properties/3/spawn = true
 properties/3/replication_mode = 1
 
 [node name="VehicleBody3D" type="VehicleBody3D"]
-gravity_scale = 2.0
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+gravity_scale = 3.0
 engine_force = 87.77
 script = ExtResource("1_6lwfj")
 
@@ -80,7 +82,7 @@ mesh = SubResource("PrismMesh_qrxud")
 skeleton = NodePath("../../..")
 
 [node name="Marker3D" type="Marker3D" parent="CSGBox3D/CSGBox3D2/CSGSphere3D"]
-transform = Transform3D(0.76884884, -2.514571e-08, 1.7881393e-07, 2.7939677e-08, 1.0109012, 1.8626451e-09, 0, 1.8626451e-09, 1.141095, -2.5023007, 0.118425846, 0.20214307)
+transform = Transform3D(0.76884925, -2.6816803e-08, 1.7882667e-07, 2.7455519e-08, 1.0109012, 2.066372e-09, 1.8189894e-12, 1.8626451e-09, 1.141095, -2.4206283, 0.11455774, 0.20214345)
 
 [node name="CSGCombiner3D" type="RigidBody3D" parent="."]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dst07yc07im3h"]
 
 [ext_resource type="Script" uid="uid://b2kik1yfof5b5" path="res://scenes/rotate.gd" id="1_0osyi"]
-[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="1_ixgqq"]
+[ext_resource type="Material" uid="uid://m80rmki4fbox" path="res://sky/examples/night_sky.tres" id="1_ixgqq"]
 [ext_resource type="Script" uid="uid://rxuscviwulvk" path="res://scenes/lobby.gd" id="1_opckk"]
 [ext_resource type="PackedScene" uid="uid://t86hvqcgi1if" path="res://scenes/tank.tscn" id="2_opckk"]
 [ext_resource type="PackedScene" uid="uid://b2xttrlskfm8d" path="res://assets/map_assets/GLB format/block-moving-blue.glb" id="3_yvtok"]

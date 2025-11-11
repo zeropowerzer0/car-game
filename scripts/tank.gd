@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 			position.y+=5
 		rotation=Vector3(0,0,0)
 	if Input.is_action_pressed("brake"):
-		engine_force = -250
+		engine_force = -500
 	if Input.is_action_pressed("forward"):
 		engine_force = speed*200
 	

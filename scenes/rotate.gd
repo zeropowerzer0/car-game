@@ -1,5 +1,5 @@
 extends StaticBody3D
-@onready var vehicle_body_3d: tank = $VehicleBody3D
+@onready var vehicle_body_3d = $VehicleBody3D
 
 func _ready() -> void:
 	vehicle_body_3d.gravity_scale=4

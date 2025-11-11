@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b3vts7txtokug"
+uid="uid://ccen1csk70bg1"
 path="res://.godot/imported/roadTile_162.gltf-e05dc673b124ed3fb4303d10e2c1cd89.scn"
 
 [deps]
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
+gltf/naming_version=0
 gltf/embedded_image_handling=1

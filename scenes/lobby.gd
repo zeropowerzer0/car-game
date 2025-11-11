@@ -9,7 +9,7 @@ func _on_host_pressed() -> void:
 	if peer.create_server(PORT) !=OK:
 		print("Server not Created")
 		return
-	move_to_tank_selection()
+	move_to_map()
 	
 func _on_join_pressed() -> void:
 	Global.player_name = name_input.text.strip_edges()
@@ -19,9 +19,9 @@ func _on_join_pressed() -> void:
 	if peer.create_client(ip,PORT)!=OK:
 		print("Client not connected")
 		return
-	move_to_tank_selection()
+	move_to_map()
 
-func move_to_tank_selection():
+func move_to_map():
 	Global.player_name=name_input.text.strip_edges()
 	multiplayer.multiplayer_peer=peer
 	get_tree().change_scene_to_file("res://scenes/map.tscn")
